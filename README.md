@@ -171,3 +171,17 @@ If you'd like to improve this wrapper – add better error handling, logging, or
 ---
 
 **Made with ❤️ by Myst‑25**
+
+---
+
+## 🔍 Search & Indexing Tags
+
+To help users find this wrapper easily, here are the primary search terms and tags associated with this repository:
+- **IDM Activation**: Internet Download Manager activation, IDM activation script, IDM trial reset, IDM active script.
+- **Go Wrapper**: Go-based IDM launcher, IDM Command Line tool, silent IDM activator.
+- **Coporton IAS**: Wrapper for Coporton IDM activation script (`IASL.cmd`), `irm https://coporton.com/ias | iex` wrapper.
+- **System Tools**: Registry reset, Windows IDM utility, download manager activator.
+
+<!--
+idm activation script, internet download manager activator, idm trial reset, ias wrapper, idm license key activation, free idm download, idm registry cleaner, idm activation cmd, download manager trial bypass, how to activate idm, idm crack exe wrapper, idm active script github, coporton ias wrapper, idm-activator.exe, idm-activation-script github
+-->
