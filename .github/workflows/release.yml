@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-release:
-    runs-on: windows-latest  # Go builds for Windows
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 
@@ -26,27 +26,36 @@ jobs:
           go-version: '1.22'
 
       - name: Build Windows Executable
+        env:
+          GOOS: windows
+          GOARCH: amd64
         run: |
           go build -ldflags="-s -w" -o IDM-Activator.exe main.go
 
       - name: Extract Version and Changelog
         id: extract
         run: |
-          $VERSION_TAG = "v${{ github.event.inputs.versionName }}"
-          $LAST_TAG = git describe --tags --abbrev=0 2>$null
-          if ($LAST_TAG) {
-            $CHANGELOG = git log ${LAST_TAG}..HEAD --pretty=format:"- %s"
-          } else {
-            $CHANGELOG = git log -1 --pretty=format:"- %s"
-          }
-          if (-not $CHANGELOG) {
-            $CHANGELOG = git log -1 --pretty=format:"- %s"
-          }
-          echo "version_tag=$VERSION_TAG" >> $env:GITHUB_ENV
-          echo "changelog<<EOF" >> $env:GITHUB_ENV
-          echo $CHANGELOG >> $env:GITHUB_ENV
-          echo "EOF" >> $env:GITHUB_ENV
-        shell: pwsh
+          VERSION_TAG="v${{ github.event.inputs.versionName }}"
+          
+          # Automatically get commit messages since last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            CHANGELOG=$(git log -1 --pretty=format:"- %s")
+          else
+            CHANGELOG=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s")
+            # Fallback to latest commit if nothing found (e.g. running on the same commit)
+            if [ -z "$CHANGELOG" ]; then
+              CHANGELOG=$(git log -1 --pretty=format:"- %s")
+            fi
+          fi
+          
+          echo "version_tag=$VERSION_TAG" >> $GITHUB_ENV
+          
+          # Handle multiline string for GitHub Environment Variables
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "changelog<<$EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         id: create_release
@@ -64,35 +73,26 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: '-1003782580194'
-          RELEASE_URL: 'https://github.com/myst-25/idm-activator/releases/tag/${{ env.version_tag }}'
-          REPO_URL: 'https://github.com/myst-25/idm-activator'
+          RELEASE_URL: 'https://github.com/myst-25/IDM-Activation-script/releases/tag/${{ env.version_tag }}'
+          REPO_URL: 'https://github.com/myst-25/IDM-Activation-script'
         run: |
-          $CAPTION = @"
-          <b>New IDM Activator Release: ${{ env.version_tag }}</b>
-
+          CAPTION="<b>New IDM Activator Release: ${{ env.version_tag }}</b>
+          
           A Go-based wrapper for IDM activation.
           Run as Administrator for best results.
-
+          
           <b>Changelog:</b>
           ${{ env.changelog }}
-
-          🔗 <a href="$env:RELEASE_URL">Download / View Release</a>
-          📦 <a href="$env:REPO_URL">GitHub Repository</a>
-          "@
-
-          $MEDIA_JSON = @'
-          [
-            {
-              "type": "document",
-              "media": "attach://activator_file",
-              "caption": $CAPTION,
-              "parse_mode": "HTML"
-            }
-          ]
-          '@
-
-          curl.exe -X POST "https://api.telegram.org/bot${env:TELEGRAM_BOT_TOKEN}/sendMediaGroup" `
-            -F chat_id="${env:TELEGRAM_CHAT_ID}" `
-            -F media="$MEDIA_JSON" `
+          
+          🔗 <a href=\"$RELEASE_URL\">Download / View Release</a>
+          📦 <a href=\"$REPO_URL\">GitHub Repository</a>"
+          
+          # Safely escape the caption for JSON using jq
+          MEDIA_JSON=$(jq -n --arg cap "$CAPTION" '[
+            {"type":"document", "media":"attach://activator_file", "caption":$cap, "parse_mode":"HTML"}
+          ]')
+          
+          curl -v -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMediaGroup" \
+            -F chat_id="${TELEGRAM_CHAT_ID}" \
+            -F media="$MEDIA_JSON" \
             -F activator_file="@IDM-Activator.exe"
-        shell: pwsh
