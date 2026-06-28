@@ -1,10 +1,3 @@
-Got it! Here's the full **README.md** file for your repository – ready to copy, paste, and commit.
-
----
-
-## 📄 README.md
-
-```markdown
 # 🚀 IDM Activator Wrapper
 
 A lightweight Go wrapper for the [Coporton IDM Activation Script](https://bitbucket.org/coporton/idm-activation-script/src/main/) – an open‑source tool to activate and reset the trial of Internet Download Manager.
@@ -74,13 +67,13 @@ This wrapper is just a Go‑based launcher that provides:
 
 3. **Build the executable:**
    ```cmd
-   go build -ldflags="-s -w" -o idm-activator.exe main.go
+   go build -ldflags="-s -w" -o IDM-Activator.exe main.go
    ```
    The `-ldflags="-s -w"` flag strips debug information, making the `.exe` smaller.
 
 4. *(Optional)* – If you want a smaller file, you can also use [UPX](https://upx.github.io/):
    ```cmd
-   upx --best --ultra-brute idm-activator.exe
+   upx --best --ultra-brute IDM-Activator.exe
    ```
 
 ---
@@ -88,20 +81,20 @@ This wrapper is just a Go‑based launcher that provides:
 ## ▶️ How to Run
 
 ### Recommended (Admin)
-**Right‑click** `idm-activator.exe` → select **"Run as administrator"**.  
+**Right‑click** `IDM-Activator.exe` → select **"Run as administrator"**.  
 Running as Administrator prevents the original script from opening a second terminal window for UAC elevation.
 
 ### Command‑Line Options
 
 | Command | Effect |
 |---------|--------|
-| `idm-activator.exe` | Interactive mode – asks for confirmation before running |
-| `idm-activator.exe -q` | **Quiet mode** – skips the confirmation prompt |
-| `idm-activator.exe --dry-run` | **Dry‑run** – shows what would be executed without actually running it |
+| `IDM-Activator.exe` | Interactive mode – asks for confirmation before running |
+| `IDM-Activator.exe -q` | **Quiet mode** – skips the confirmation prompt |
+| `IDM-Activator.exe --dry-run` | **Dry‑run** – shows what would be executed without actually running it |
 
 ### Example
 ```cmd
-idm-activator.exe -q
+IDM-Activator.exe -q
 ```
 This will download and execute the activation script without any prompts.
 
@@ -155,10 +148,10 @@ This downloads and runs the script directly in memory. **Only use this if you tr
 
 ## 🧪 Testing
 
-You can test the wrapper safely using the dry‑run flag:
+You can test the wrapper safely using the dry-run flag:
 
 ```cmd
-idm-activator.exe --dry-run
+IDM-Activator.exe --dry-run
 ```
 
 This will output the command that would be executed without actually running it.
@@ -178,18 +171,3 @@ If you'd like to improve this wrapper – add better error handling, logging, or
 ---
 
 **Made with ❤️ by Myst‑25**
-```
-
----
-
-## 📝 How to Use
-
-1. **Create a new file** in your repository root called `README.md`.
-2. **Copy and paste** the above content.
-3. **Commit and push** it to GitHub.
-
-GitHub will automatically render it beautifully on your repository homepage.
-
----
-
-Would you like me to also generate a **`go.mod`** file or a **`.gitignore`** for your Go project?
