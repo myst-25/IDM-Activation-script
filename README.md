@@ -9,10 +9,13 @@ A lightweight Go wrapper for the [Coporton IDM Activation Script](https://bitbuc
 ## ✨ Features
 
 - ✅ **Clean terminal interface** – shows a stylish banner with the Myst‑25 logo
-- ✅ **Admin detection** – warns you if not running as Administrator
+- ✅ **Auto-Admin Elevation** – requests UAC elevation automatically if not running as Administrator
+- ✅ **OS Guard** – cleanly prevents execution on non-Windows systems
 - ✅ **Confirmation prompt** – prevents accidental execution
 - ✅ **Quiet mode** (`-q`) – skip the prompt for automation
 - ✅ **Dry‑run mode** (`--dry-run`) – preview the command without executing
+- ✅ **Logging** (`--log`) – saves execution output to a local log file
+- ✅ **Version flag** (`-v` or `--version`) – displays the wrapper version
 - ✅ **One‑click build** – compiles to a single Windows `.exe`
 
 ---
@@ -91,6 +94,8 @@ Running as Administrator prevents the original script from opening a second term
 | `IDM-Activator.exe` | Interactive mode – asks for confirmation before running |
 | `IDM-Activator.exe -q` | **Quiet mode** – skips the confirmation prompt |
 | `IDM-Activator.exe --dry-run` | **Dry‑run** – shows what would be executed without actually running it |
+| `IDM-Activator.exe --log` | **Logging** – saves all output to `idm-activation.log` |
+| `IDM-Activator.exe -v` | **Version** – prints the current version and author credits |
 
 ### Example
 ```cmd
