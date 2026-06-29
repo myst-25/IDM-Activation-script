@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>IDM Activator Wrapper</title>
+    <meta
+      name="description"
+      content="A lightweight Go wrapper for the Coporton IDM Activation Script."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header class="header">
+        <div class="logo">IDM Activator</div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle theme"
+        >
+          <svg
+            id="moon-icon"
+            aria-label="Dark Mode"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon"
+            style="display: none"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <svg
+            id="sun-icon"
+            aria-label="Light Mode"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+      </header>
+
+      <main class="content">
+        <section class="intro reveal">
+          <h1>
+            <span class="name">IDM Activator Wrapper</span>
+          </h1>
+          <p class="tagline">
+            Lightweight Go wrapper for the Coporton IDM Activation Script
+          </p>
+          <p>
+            An open‑source tool to safely activate and reset the trial of Internet Download Manager with a clean terminal interface.
+          </p>
+          
+          <div class="terminal-container" style="background-color: var(--hover-bg); border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; font-family: monospace; position: relative;">
+            <div style="display: flex; gap: 8px; margin-bottom: 1rem;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #ff5f56;"></div>
+              <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #ffbd2e;"></div>
+              <div style="width: 12px; height: 12px; border-radius: 50%; background-color: #27c93f;"></div>
+            </div>
+            <code style="color: var(--text-primary); font-size: 0.95rem;">> IDM-Activator.exe -q</code>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.85rem;">// Runs silently without confirmation prompts</p>
+          </div>
+
+          <div class="hero-actions" style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+            <a
+              href="https://github.com/myst-25/IDM-Activation-script/releases/latest"
+              target="_blank"
+              class="modal-btn primary-btn"
+              style="background-color: var(--text-primary); color: var(--bg-color); padding: 0.6rem 1.2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500;"
+            >Download Release</a>
+            <a
+              href="https://github.com/myst-25/IDM-Activation-script"
+              target="_blank"
+              class="modal-btn secondary-btn"
+              style="background-color: transparent; border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.6rem 1.2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500;"
+            >View Source</a>
+          </div>
+        </section>
+
+        <section class="projects reveal">
+          <h2>Features</h2>
+          <div class="project-list">
+            <div class="project-item">
+              <div class="project-info">
+                <h3>Clean Terminal Interface</h3>
+                <p>Shows a stylish banner with the Myst-25 logo.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <div class="project-info">
+                <h3>Admin Detection</h3>
+                <p>Warns you if not running as Administrator to ensure proper activation.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <div class="project-info">
+                <h3>Quiet Mode</h3>
+                <p>Skip the confirmation prompt for easy automation using the -q flag.</p>
+              </div>
+            </div>
+            <div class="project-item">
+              <div class="project-info">
+                <h3>Dry-Run Mode</h3>
+                <p>Preview the execution command safely using --dry-run.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reveal" style="margin-bottom: 4rem;">
+          <h2>Security Note & Disclaimer</h2>
+          <div style="padding: 1.25rem; border: 1px solid #f5a623; border-radius: 0.5rem; background-color: rgba(245, 166, 35, 0.05); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;">
+            <strong style="color: #f5a623; display: block; margin-bottom: 0.5rem;">Educational & Fair Use Only</strong>
+            This tool is intended for learning purposes. Using it to circumvent software licensing may violate the EULA of Internet Download Manager. Use at your own risk. The wrapper downloads and executes the official Coporton IDM Activation Script. All credit goes to the Coporton team.
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer reveal">
+        <div class="footer-grid">
+          <div class="footer-col brand">
+            <span class="footer-logo">IDM Activator Wrapper</span>
+            <p class="footer-tagline">Open Source Utility</p>
+          </div>
+          <div class="footer-col social">
+            <span class="footer-label">Links</span>
+            <div class="footer-links">
+              <a href="https://github.com/myst-25" target="_blank">Myst-25 GitHub</a>
+              <a href="https://bitbucket.org/coporton/idm-activation-script/src/main/" target="_blank">Original Script</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">&copy; Made with ❤️ by Myst-25</p>
+        </div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
